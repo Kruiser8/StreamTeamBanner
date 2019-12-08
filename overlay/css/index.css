@@ -1,0 +1,55 @@
+/*
+ This overlay was made by Kruiser8 (https://twitch.tv/kruiser8)
+  and is licensed under the Creative Commmons Attribution 4.0 International License (CC BY 4.0)
+
+ For License information, visit https://creativecommons.org/licenses/by/4.0/
+*/
+body {
+  margin: 0px auto;
+  background: rgba(0,0,0,0);
+  overflow: hidden;
+}
+.logo {
+  display: inline-block;
+  visibility: hidden;
+}
+img {
+  display: inline;
+}
+
+.spinner {
+  -webkit-animation-name: spinner;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 6s;
+
+  animation-name: spinner;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 6s;
+
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* WebKit and Opera browsers */
+@-webkit-keyframes spinner {
+  from { -webkit-transform: rotateY(0deg);    }
+  to   { -webkit-transform: rotateY(-360deg); }
+}
+
+/* all other browsers */
+@keyframes spinner {
+  from {
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+  to {
+    -moz-transform: rotateY(-360deg);
+    -ms-transform: rotateY(-360deg);
+    transform: rotateY(-360deg);
+  }
+}
