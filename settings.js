@@ -9,7 +9,7 @@
 
 // IMPORTANT: Do you play host and raid alerts on your channel?
 // - This setting synchronizes the overlay with your streamlabs alerts
-var hasAlerts = false;
+var hasAlerts = true;
 
 /****************
  * Team Options *
@@ -60,7 +60,7 @@ var animationOut = 'fadeOut';
 var image = 'str1kenat1on.png';
 
 // Set useFixedHeight to true if you need to apply a maximum height (imageHeight) to all images
-var useFixedHeight = false;
+var useFixedHeight = true;
 var imageHeight = 200;
 
 // Opacity setting
@@ -69,11 +69,11 @@ var imageOpacity = 0.6;
 
 // Align the images inside the overlay.
 //  - possible inputs: "left", "center", or "right"
-var alignImage = "center";
+var alignImage = "left";
 
 // Should the image spin? (true/false)
 var spinImage = true;
 
 /* End Configurations */
 
-var debug = true; // intended for dev use...
+var debug = false; // intended for dev use...
