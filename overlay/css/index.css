@@ -10,7 +10,6 @@ body {
   overflow: hidden;
 }
 .logo {
-  display: inline-block;
   visibility: hidden;
 }
 img {
