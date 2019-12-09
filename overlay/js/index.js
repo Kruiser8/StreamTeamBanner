@@ -1,8 +1,8 @@
 /*
- This overlay was made by Kruiser8 (https://twitch.tv/kruiser8)
-  and is licensed under the Creative Commmons Attribution 4.0 International License (CC BY 4.0)
+This overlay was made by Kruiser8 (https://twitch.tv/kruiser8)
+and is licensed under the Creative Commmons Attribution 4.0 International License (CC BY 4.0)
 
- For License information, visit https://creativecommons.org/licenses/by/4.0/
+For License information, visit https://creativecommons.org/licenses/by/4.0/
 */
 var raiders = [];
 var hosters = [];
@@ -13,58 +13,58 @@ var teamMembers;
  */
 function animate() {
   if (timer) {
-		clearTimeout(timeoutIn);
-		animateIn('.logo','fadeIn');
-	} else {
-		clearTimeout(timeoutOut);
-		if ($('.logo').css("visibility") == "hidden") {
-			animateIn('.logo','fadeIn');
-		} else {
-			timeoutOut = setTimeout(animateOut,duration*1000,'.logo','fadeOut');
-		}
-	}
+    clearTimeout(timeoutIn);
+    animateIn('.logo','fadeIn');
+  } else {
+    clearTimeout(timeoutOut);
+    if ($('.logo').css("visibility") == "hidden") {
+      animateIn('.logo','fadeIn');
+    } else {
+      timeoutOut = setTimeout(animateOut,duration*1000,'.logo','fadeOut');
+    }
+  }
 }
 
 // Do stuff if the document is fully loaded
 $(document).ready(function() {
-	// Show an error message if the API key file is not loaded
-	if (typeof token === "undefined" || token === "") {
-		$("body").html("No Streamlabs token found or loaded!");
-		$("body").css({"font-size": "50px", "color": "#ff8080", "text-align": "center"});
-	}
-	// Connect to the Streamlabs Chatbot websocket
-	else {
-		init();
-		if (repeat != 0) {
-			animate();
-		}
-	}
+  // Show an error message if the API key file is not loaded
+  if (typeof token === "undefined" || token === "") {
+    $("body").html("No Streamlabs token found or loaded!");
+    $("body").css({"font-size": "50px", "color": "#ff8080", "text-align": "center"});
+  }
+  // Connect to the Streamlabs Chatbot websocket
+  else {
+    init();
+    if (repeat != 0) {
+      animate();
+    }
+  }
 });
 
 /**
  * Setup the overlay with settings
  */
 function init() {
-	buildTeamMembers();
+  buildTeamMembers();
 
-	// Add image
-	$('.logo img').attr('src', 'images/' + image);
+  // Add image
+  $('.logo img').attr('src', 'images/' + image);
 
-	// Set height
-	if (useFixedHeight) {
-		$('.logo img').css('max-height', imageHeight);
-	}
+  // Set height
+  if (useFixedHeight) {
+    $('.logo img').css('max-height', imageHeight);
+  }
 
-	// Set opacity
-	$( '.logo img' ).css('opacity', imageOpacity);
+  // Set opacity
+  $( '.logo img' ).css('opacity', imageOpacity);
 
-	// Add spinner
-	if (spinImage) {
-		$('.logo img').addClass('spinner');
-	}
+  // Add spinner
+  if (spinImage) {
+    $('.logo img').addClass('spinner');
+  }
 
-	// Align image
-	$( '.logo' ).css('text-align', alignImage);
+  // Align image
+  $( '.logo' ).css('text-align', alignImage);
 
   connectWebsocket(hasAlerts);
 }
@@ -73,15 +73,15 @@ function init() {
  * Build the list of team members
  */
 function buildTeamMembers() {
-	if (streamTeamName) {
-		getTwitchTeamMembers(streamTeamName);
-	} else {
-		teamMembers = streamTeamMembers;
-		if (debug) {
-			console.log('using streamteam members...');
-			console.log(teamMembers);
-		}
-	}
+  if (streamTeamName) {
+    getTwitchTeamMembers(streamTeamName);
+  } else {
+    teamMembers = streamTeamMembers;
+    if (debug) {
+      console.log('using streamteam members...');
+      console.log(teamMembers);
+    }
+  }
 }
 
 /**
@@ -90,24 +90,24 @@ function buildTeamMembers() {
  */
 function getTwitchTeamMembers(team) {
   team = team.toLowerCase();
-	$.ajax({
+  $.ajax({
     url: "https://decapi.me/twitch/team_members/" + team
   }).done(function( data ) {
-		if (Array.isArray(data)) {
-			if (Array.isArray(streamTeamMembers)) {
-				teamMembers = streamTeamMembers.concat(data);
-			} else {
-				teamMembers = data;
-			}
-		} else {
-			teamMembers = streamTeamMembers;
-		}
-		teamMembers = teamMembers.filter( onlyUnique );
-		teamMembers.toLowerCase();
-		if (debug) {
-			console.log('team members...');
-			console.log(teamMembers);
-		}
+    if (Array.isArray(data)) {
+      if (Array.isArray(streamTeamMembers)) {
+        teamMembers = streamTeamMembers.concat(data);
+      } else {
+        teamMembers = data;
+      }
+    } else {
+      teamMembers = streamTeamMembers;
+    }
+    teamMembers = teamMembers.filter( onlyUnique );
+    teamMembers.toLowerCase();
+    if (debug) {
+      console.log('team members...');
+      console.log(teamMembers);
+    }
   });
 }
 
@@ -115,14 +115,14 @@ function getTwitchTeamMembers(team) {
  * Array extension to lowercase all values
  */
 Array.prototype.toLowerCase = function() {
-    for (var i = 0; i < this.length; i++) {
-        this[i] = this[i].toString().toLowerCase();
-    }
+  for (var i = 0; i < this.length; i++) {
+    this[i] = this[i].toString().toLowerCase();
+  }
 }
 
 /**
  * Array filter used to remove duplicates
  */
 function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
+  return self.indexOf(value) === index;
 }
