@@ -6,7 +6,7 @@
 */
 
 /*
-  To find your Streamlabs token, go to https://streamlabs.com/dashboard#/apisettings
+  To find your Streamlabs token, go to https://streamlabs.com/dashboard#/settings/api-settings
   Copy the Socket API Token into the quotes below
 */
 var token = "";
